@@ -1,0 +1,34 @@
+version: '3.9'
+
+services:
+  app:
+    container_name: app
+    restart: always
+    build: .
+    ports:
+      - "5001:5001"
+    links:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017
+      - DB_NAME=web3-challenge
+      - PORT=5001
+      - RPC=https://api.avax.network/ext/bc/C/rpc
+    depends_on:
+      - mongo
+    networks:
+      - web-network
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - web-network
+    volumes: 
+      - "mongodbdata:/data/db"
+
+networks:
+    web-network:
+volumes: 
+    mongodbdata:
