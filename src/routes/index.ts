@@ -5,7 +5,8 @@ import {
   getDecodeTransaction,
   getAllTransactions,
   getAbiDetail,
-  getByteCode
+  getByteCode,
+  getEventLogs
 } from "../controller/controllers";
 import { isValidHash } from "../middleware/isValidHash";
 
@@ -20,5 +21,6 @@ router.get("/transaction/get-all", getAllTransactions);
 
 router.get("/contract/abi", getAbiDetail);
 router.get("/contract/bytecode", getByteCode);
+router.get("/contract/get-logs/:contractAddress/:address", getEventLogs)
 
 export default router;

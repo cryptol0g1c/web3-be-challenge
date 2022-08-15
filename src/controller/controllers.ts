@@ -1,10 +1,11 @@
 import { NextFunction, Request, Response } from "express";
 import { provider } from "../utils/rpc_connection";
-import { getContractData } from "./contract_data";
+import { getContractData, getLogs } from "./contract_data";
 import { collections } from "../config/database";
 import { decodeGas } from "../utils/gasDecode";
 import { QueryError } from "../utils/Error";
 import path from 'path';
+import { Contract } from "ethers";
 
 export const getTransactionDetails = async (req: Request, res: Response, next: NextFunction) => {
   const txHash: string = req.params.txHash;
@@ -92,4 +93,14 @@ export const getByteCode = async (req: Request, res: Response, next: NextFunctio
       res.status(400).send(error);
       console.log(error);
     }
+}
+
+export const getEventLogs = async (req: Request, res: Response, next: NextFunction) => {
+  const address:string = req.params.address;
+  const contractAddress:string = req.params.contractAddress;
+  const logs = await getLogs(contractAddress, address);
+  console.log(logs)
+  if(!logs)  throw new QueryError(400, "Bad Request", 'Empty logs');
+
+  res.status(200).send(logs);
 }
