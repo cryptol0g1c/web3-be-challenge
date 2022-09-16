@@ -1,4 +1,3 @@
-
 ## Cryptologic web3/backend application challenge.
 
 The main goal of this challenge is to create a backend application writen in nodejs/typescript that consumes, processes and store blockchain data.
