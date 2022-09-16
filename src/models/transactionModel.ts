@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 
 export interface TransactionInfo {
-    hash: string;
-    blockNumber?: number,
-    blockHash?: string,
-    timestamp?: number,
-    confirmations: number,
-    from: string;
-    raw?: string,
+    hash: string
+    blockNumber?: number
+    blockHash?: string
+    timestamp?: number
+    confirmations: number
+    from: string
+    raw?: string
+    to: string
 }
 
 export interface TransactionDocument extends TransactionInfo, mongoose.Document {
@@ -46,6 +47,10 @@ const transactionSchema = new mongoose.Schema({
   createdAt: {
     type: Date,
     default: () => Date.now(),
+  },
+  to: {
+    type: String,
+    required: true,
   },
 });
 
