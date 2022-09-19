@@ -1737,11 +1737,6 @@ confusing-browser-globals@^1.0.10:
   resolved "https://registry.npmjs.org/confusing-browser-globals/-/confusing-browser-globals-1.0.11.tgz"
   integrity sha512-JsPKdmh8ZkmnHxDk55FZ1TqVLvEQTvoByJZRN9jzI0UjxK/QgAmsphz7PGtqgPieQZ/CQcHWXCR7ATDNhGe+YA==
 
-console-log-colors@^0.2.3:
-  version "0.2.3"
-  resolved "https://registry.npmjs.org/console-log-colors/-/console-log-colors-0.2.3.tgz"
-  integrity sha512-KAGsePEunvs575RFAIThR7sUBVuqXU0Y2tckA99k25itVAOa0hPwf3HkNVyQ7XnbisKvTp/gLnByjG9NTYt3hw==
-
 content-disposition@0.5.4:
   version "0.5.4"
   resolved "https://registry.npmjs.org/content-disposition/-/content-disposition-0.5.4.tgz"
@@ -2422,7 +2417,7 @@ fs.realpath@^1.0.0:
 
 fs@^0.0.1-security:
   version "0.0.1-security"
-  resolved "https://registry.yarnpkg.com/fs/-/fs-0.0.1-security.tgz#8a7bd37186b6dddf3813f23858b57ecaaf5e41d4"
+  resolved "https://registry.npmjs.org/fs/-/fs-0.0.1-security.tgz"
   integrity sha512-3XY9e1pP0CVEUCdj5BmfIZxRBTSDycnbqhIOGec9QYtmVH2fbLpj86CFWkrNOkt/Fvty4KZG5lTglL9j/gJ87w==
 
 fsevents@^2.3.2, fsevents@~2.3.2:
@@ -2608,7 +2603,7 @@ hash.js@1.1.7, hash.js@^1.0.0, hash.js@^1.0.3:
 
 helmet@^6.0.0:
   version "6.0.0"
-  resolved "https://registry.yarnpkg.com/helmet/-/helmet-6.0.0.tgz#8e183820ddccd7729a206ad73c577b264f495595"
+  resolved "https://registry.npmjs.org/helmet/-/helmet-6.0.0.tgz"
   integrity sha512-FO9RpR1wNJepH/GbLPQVtkE2eESglXL641p7SdyoT4LngHFJcZheHMoyUcjCZF4qpuMMO1u5q6RK0l9Ux8JBcg==
 
 hmac-drbg@^1.0.1:

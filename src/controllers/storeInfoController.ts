@@ -23,7 +23,7 @@ class StoreInfoController {
       const result = await StoreInfoController.storeInfo();
       response.send(result);
     } catch (error) {
-      response.status(500).send(error);
+      response.send(error);
     }
   };
 

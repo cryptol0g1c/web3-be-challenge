@@ -20,7 +20,7 @@ class GetInfoController {
       const lastTransaction = await GetInfoController.getLastTransaction();
       response.send(lastTransaction);
     } catch (error) {
-      response.status(500).send(error);
+      response.send(error);
     }
   };
 

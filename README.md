@@ -1,5 +1,49 @@
 ## Cryptologic web3/backend application challenge.
 
+This is a sample application taking in account the requirements described at the end of the document.
+
+Some not done features:
+- The code coverage is not completed and not all use cases are covered
+- ABIs are not stored in the database but in local files for now
+- Errors management should be improved
+
+### Installation
+Step by step instullation explanation, or a quick introduction of the minimal setup you need to get the server application running.
+
+Needs to create a .env file copying values from .env.example modifying values as desired.
+
+It's needed a MongoDB instance running and to set the connection URL on MONGO_URL environment variable. 
+
+```shell
+yarn
+yarn dev
+```
+
+### Run on docker 
+
+You may modify Dockerfile to set environment variables properly and then execute the following commands:
+
+```shell
+docker build . -t mytag
+docker run mytag
+```
+
+### Usage
+With a browser, postman or any other way it will be possible to access the 2 sample endpoints to store and get transaction information.
+
+- /store endpoint, for example: http://localhost:9650/store
+- /get endpoint, for example: http://localhost:9650/get
+
+### Running tests
+To run unit test and see test coverage you can run:
+
+```
+yarn test
+```
+
+
+#### Requirements.
+
 The main goal of this challenge is to create a backend application writen in nodejs/typescript that consumes, processes and store blockchain data.
 
 To achieve this, the following items are required.

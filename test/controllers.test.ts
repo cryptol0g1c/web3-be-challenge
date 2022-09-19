@@ -4,11 +4,14 @@ import {
 import MongoMemoryServerHandler from './db-handler';
 import GetInfoController from '../src/controllers/getInfoController';
 import StoreInfoController from '../src/controllers/storeInfoController';
-import { sampleTransaction, sampleDbDocument, sampleTransactionAddress } from './sampleTransaction';
+import { sampleTransaction, sampleDbDocument, sampleEvents } from './sampleTransaction';
 
-jest.mock('../src/library/blockchain', () => ({
+jest.mock('../src/library/w3Utils', () => ({
   __esModule: true,
-  getTransactionInfo: jest.fn(() => Promise.resolve(sampleTransaction)),
+  getTransactionInfo: jest.fn(() => Promise.resolve({
+    transaction: sampleTransaction,
+    events: sampleEvents,
+  })),
 }));
 
 const mongoServer = new MongoMemoryServerHandler();
@@ -25,7 +28,7 @@ describe('StoreInfoController', () => {
   });
   it('should store transaction', async () => {
     await StoreInfoController.storeInfo();
-    const storedTransaction = await GetInfoController.getLastTransaction();
+    const storedTransaction = await StoreInfoController.storeInfo();
     expect(storedTransaction?.hash).toEqual(sampleDbDocument.hash);
     expect(storedTransaction?.from).toEqual(sampleDbDocument.from);
     expect(storedTransaction?.blockNumber).toEqual(sampleDbDocument.blockNumber);
@@ -34,7 +37,7 @@ describe('StoreInfoController', () => {
 });
 
 // GetInfoController test suite
-describe('product ', () => {
+describe('product', () => {
   it('can be instantiated', () => {
     expect(new GetInfoController()).toBeInstanceOf(GetInfoController);
   });
