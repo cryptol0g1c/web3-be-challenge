@@ -1,5 +1,9 @@
 import mongoose from 'mongoose';
 
+export interface TransactionEvent {
+  name: string;
+  signature: string;
+}
 export interface TransactionInfo {
     hash: string
     blockNumber?: number
@@ -9,6 +13,7 @@ export interface TransactionInfo {
     from: string
     raw?: string
     to: string
+    events: TransactionEvent[]
 }
 
 export interface TransactionDocument extends TransactionInfo, mongoose.Document {
@@ -50,6 +55,10 @@ const transactionSchema = new mongoose.Schema({
   },
   to: {
     type: String,
+    required: true,
+  },
+  events: {
+    type: Array,
     required: true,
   },
 });

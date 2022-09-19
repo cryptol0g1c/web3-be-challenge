@@ -3,6 +3,7 @@ import { ethers } from 'ethers';
 import fs from 'fs';
 import config from '../config/config';
 import Logging from './logging';
+import { TransactionEvent } from '../models/transactionModel';
 
 const fsPromises = fs.promises;
 
@@ -52,13 +53,18 @@ export const getTransactionInfo = async (transactionAddress: string) => {
   const { logs } = receipt;
 
   // Get logs details
-  logs.forEach(async (log) => {
+  const events:TransactionEvent[] = await Promise.all(logs.map(async (log) => {
     const contractAddress = log.address;
     const contract = await getContract(contractAddress);
     const event = contract.interface.parseLog(log);
     Logging.info(`Event name: ${event.name}`);
     Logging.info(`Event signature: ${event.signature}\n`);
-  });
+    Logging.info(event);
+    return {
+      name: event.name,
+      signature: event.signature,
+    };
+  }));
 
-  return transaction;
+  return { transaction, events };
 };

@@ -1,5 +1,5 @@
 import * as express from 'express';
-import { getTransactionInfo, getContract } from '../library/blockchain';
+import { getTransactionInfo } from '../library/w3Utils';
 import TransactionModel, { TransactionInfo, TransactionDocument } from '../models/transactionModel';
 import config from '../config/config';
 
@@ -28,9 +28,10 @@ class StoreInfoController {
   };
 
   public static storeInfo = async ():Promise<TransactionDocument> => {
-    const transactionInfo = await getTransactionInfo(config.ethers.transactionAddress);
-    const transaction = new TransactionModel(transactionInfo);
-    const storeResult = await transaction.save();
+    const { transaction, events } = await getTransactionInfo(config.ethers.transactionAddress);
+    const transactionDocument = new TransactionModel(transaction);
+    transactionDocument.events = events;
+    const storeResult = await transactionDocument.save();
     return storeResult;
   };
 }
