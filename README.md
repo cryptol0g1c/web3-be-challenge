@@ -28,11 +28,22 @@ docker build . -t mytag
 docker run mytag
 ```
 
-### Usage
-With a browser, postman or any other way it will be possible to access the 2 sample endpoints to store and get transaction information.
+### Endpoints
 
-- /store endpoint, for example: http://localhost:9650/store
-- /get endpoint, for example: http://localhost:9650/get
+- `POST` `/transaction?tx=[transaction address]` Stores the transaction information for the provided address. 
+- `GET` `/transaction` Gets the information for the last saved transaction.
+- `GET` `/contract/abi?tx=[contract address]` To download the ABI for the provided contract address.
+- `GET` `/contract/bin` To download a sample contract binary.
+
+Sample calls:
+```shell
+http://localhost:9650/transaction
+http://localhost:9650/contract/bin
+http://localhost:9650/contract/abi?hash=0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd
+http://localhost:9650/contract/abi?hash=0x60aE616a2155Ee3d9A68541Ba4544862310933d4
+http://localhost:9650/contract/abi?hash=0x454E67025631C065d3cFAD6d71E6892f74487a15
+
+```
 
 ### Running tests
 To run unit test and see test coverage you can run:

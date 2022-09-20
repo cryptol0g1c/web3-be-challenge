@@ -5,7 +5,7 @@ import TransactionModel, { TransactionDocument } from '../models/transactionMode
 import ErrorResponse from '../library/errorResponse';
 
 class GetInfoController {
-  public path = '/get';
+  public path = '/transaction';
 
   public router = express.Router();
 

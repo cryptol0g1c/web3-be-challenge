@@ -5,7 +5,7 @@ import TransactionModel, { TransactionInfo, TransactionDocument } from '../model
 import ErrorResponse from '../library/errorResponse';
 
 class StoreInfoController {
-  public path = '/store';
+  public path = '/transaction';
 
   public router = express.Router();
 
@@ -16,7 +16,7 @@ class StoreInfoController {
   }
 
   public intializeRoutes() {
-    this.router.get(this.path, StoreInfoController.storeInfoHandler);
+    this.router.post(this.path, StoreInfoController.storeInfoHandler);
   }
 
   public static storeInfoHandler = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
