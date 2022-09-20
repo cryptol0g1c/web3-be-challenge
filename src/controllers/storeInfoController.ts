@@ -18,17 +18,18 @@ class StoreInfoController {
     this.router.get(this.path, StoreInfoController.storeInfoHandler);
   }
 
-  public static storeInfoHandler = async (_: express.Request, response: express.Response) => {
+  public static storeInfoHandler = async (request: express.Request, response: express.Response) => {
     try {
-      const result = await StoreInfoController.storeInfo();
+      const { tx } = request.query;
+      const result = await StoreInfoController.storeInfo(tx as string);
       response.send(result);
     } catch (error) {
       response.send(error);
     }
   };
 
-  public static storeInfo = async ():Promise<TransactionDocument> => {
-    const { transaction, events } = await getTransactionInfo(config.ethers.transactionAddress);
+  public static storeInfo = async (tx:string):Promise<TransactionDocument> => {
+    const { transaction, events } = await getTransactionInfo(tx);
     const transactionDocument = new TransactionModel(transaction);
     transactionDocument.events = events;
     const storeResult = await transactionDocument.save();

@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 export interface TransactionEvent {
   name: string;
   signature: string;
+  arguments: any;
 }
 export interface TransactionInfo {
     hash: string
