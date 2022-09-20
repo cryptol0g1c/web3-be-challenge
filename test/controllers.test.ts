@@ -4,7 +4,9 @@ import {
 import MongoMemoryServerHandler from './db-handler';
 import GetInfoController from '../src/controllers/getInfoController';
 import StoreInfoController from '../src/controllers/storeInfoController';
-import { sampleTransaction, sampleDbDocument, sampleEvents } from './sampleTransaction';
+import { 
+  sampleTransaction, sampleDbDocument, sampleEvents, sampleTransactionAddress
+ } from './sampleTransaction';
 
 jest.mock('../src/library/w3Utils', () => ({
   __esModule: true,
@@ -27,8 +29,7 @@ describe('StoreInfoController', () => {
     expect(new StoreInfoController()).toBeInstanceOf(StoreInfoController);
   });
   it('should store transaction', async () => {
-    await StoreInfoController.storeInfo();
-    const storedTransaction = await StoreInfoController.storeInfo();
+    const storedTransaction = await StoreInfoController.storeInfo(sampleTransactionAddress);
     expect(storedTransaction?.hash).toEqual(sampleDbDocument.hash);
     expect(storedTransaction?.from).toEqual(sampleDbDocument.from);
     expect(storedTransaction?.blockNumber).toEqual(sampleDbDocument.blockNumber);

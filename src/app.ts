@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import helmet from 'helmet';
 import config from './config/config';
 import Logging from './library/logging';
+import ErrorHandler from './middlewares/ErrorHandler';
 
 class App {
   public app: express.Application;
@@ -17,6 +18,7 @@ class App {
     this.port = port;
     this.dbUrl = config.mongo.url;
     this.app.use(helmet());
+    this.app.use(ErrorHandler);
 
     this.connectToTheDatabase();
     this.initializeMiddlewares();

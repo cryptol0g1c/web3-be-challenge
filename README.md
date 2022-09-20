@@ -41,7 +41,6 @@ To run unit test and see test coverage you can run:
 yarn test
 ```
 
-
 #### Requirements.
 
 The main goal of this challenge is to create a backend application writen in nodejs/typescript that consumes, processes and store blockchain data.

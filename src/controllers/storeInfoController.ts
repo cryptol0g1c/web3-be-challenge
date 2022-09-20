@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import * as express from 'express';
 import { getTransactionInfo } from '../library/w3Utils';
 import TransactionModel, { TransactionInfo, TransactionDocument } from '../models/transactionModel';
-import config from '../config/config';
+import ErrorResponse from '../library/errorResponse';
 
 class StoreInfoController {
   public path = '/store';
@@ -18,13 +19,13 @@ class StoreInfoController {
     this.router.get(this.path, StoreInfoController.storeInfoHandler);
   }
 
-  public static storeInfoHandler = async (request: express.Request, response: express.Response) => {
+  public static storeInfoHandler = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
       const { tx } = request.query;
       const result = await StoreInfoController.storeInfo(tx as string);
       response.send(result);
     } catch (error) {
-      response.send(error);
+      return next(new ErrorResponse((error as Error).message, 400));
     }
   };
 
