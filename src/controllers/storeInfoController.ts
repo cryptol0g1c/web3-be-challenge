@@ -21,7 +21,7 @@ class StoreInfoController {
 
   public static storeInfoHandler = async (request: express.Request, response: express.Response, next: express.NextFunction) => {
     try {
-      const { tx } = request.query;
+      const { tx } = request.body;
       const result = await StoreInfoController.storeInfo(tx as string);
       response.send(result);
     } catch (error) {

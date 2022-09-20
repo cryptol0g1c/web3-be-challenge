@@ -6,6 +6,7 @@ Some not done features:
 - The code coverage is not completed and not all use cases are covered
 - ABIs are not stored in the database but in local files for now
 - Errors management should be improved
+- Needs to add verifications
 
 ### Installation
 Step by step instullation explanation, or a quick introduction of the minimal setup you need to get the server application running.
@@ -30,7 +31,17 @@ docker run mytag
 
 ### Endpoints
 
-- `POST` `/transaction?tx=[transaction address]` Stores the transaction information for the provided address. 
+- `POST` `/transaction` Stores the transaction information for the provided address. 
+Body example:
+```shell
+{
+    "tx": "0x508217c172c3cfe006ee9ca5bef621ba11a359461bacfc0494f1449a7d00f443"   
+}
+```
+With header:
+```shell
+Content-Type: application/json
+```
 - `GET` `/transaction` Gets the information for the last saved transaction.
 - `GET` `/contract/abi?tx=[contract address]` To download the ABI for the provided contract address.
 - `GET` `/contract/bin` To download a sample contract binary.

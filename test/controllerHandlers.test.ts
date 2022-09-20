@@ -9,21 +9,19 @@ import { TransactionDocument } from '../src/models/transactionModel';
 
 jest.setTimeout(50000);
 
-const mockRequest = {
-  query: {
-    tx: sampleTransactionAddress,
-  },
-} as unknown as express.Request;
-
 const mockResponse = {
   send: jest.fn(),
 } as unknown as express.Response;
 
 const mockNext = jest.fn() as express.NextFunction;
 
-// StoreInfoController test suite
-describe('StoreInfoController', () => {
+describe('StoreInfoController test suite', () => {
   it('stores info correctly', async () => {
+    const mockRequest = {
+      body: {
+        tx: sampleTransactionAddress,
+      },
+    } as unknown as express.Request;
     const storedDocument = sampleDbDocument as unknown as TransactionDocument;
     StoreInfoController.storeInfo = jest.fn(async () => storedDocument);
     await StoreInfoController.storeInfoHandler(mockRequest, mockResponse, mockNext);
@@ -31,9 +29,9 @@ describe('StoreInfoController', () => {
   });
 });
 
-// GetInfoController test suite
-describe('product ', () => {
+describe('GetInfoController test suite ', () => {
   it('get info correctly', async () => {
+    const mockRequest = {} as unknown as express.Request;
     const storedDocument = sampleDbDocument as unknown as TransactionDocument;
     GetInfoController.getLastTransaction = jest.fn(async () => storedDocument);
     await GetInfoController.getTransactionHandler(mockRequest, mockResponse, mockNext);
