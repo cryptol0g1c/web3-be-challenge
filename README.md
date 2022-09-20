@@ -1,5 +1,69 @@
-
 ## Cryptologic web3/backend application challenge.
+
+This is a sample application taking in account the requirements described at the end of the document.
+
+Some not done features:
+- The code coverage is not completed and not all use cases are covered
+- ABIs are not stored in the database but in local files for now
+- Errors management should be improved
+- Needs to add verifications
+
+### Installation
+Step by step instullation explanation, or a quick introduction of the minimal setup you need to get the server application running.
+
+Needs to create a .env file copying values from .env.example modifying values as desired.
+
+It's needed a MongoDB instance running and to set the connection URL on MONGO_URL environment variable. 
+
+```shell
+yarn
+yarn dev
+```
+
+### Run on docker 
+
+You may modify Dockerfile to set environment variables properly and then execute the following commands:
+
+```shell
+docker build . -t mytag
+docker run mytag
+```
+
+### Endpoints
+
+- `POST` `/transaction` Stores the transaction information for the provided address. 
+Body example:
+```shell
+{
+    "tx": "0x508217c172c3cfe006ee9ca5bef621ba11a359461bacfc0494f1449a7d00f443"   
+}
+```
+With header:
+```shell
+Content-Type: application/json
+```
+- `GET` `/transaction` Gets the information for the last saved transaction.
+- `GET` `/contract/abi?tx=[contract address]` To download the ABI for the provided contract address.
+- `GET` `/contract/bin` To download a sample contract binary.
+
+Sample calls:
+```shell
+http://localhost:9650/transaction
+http://localhost:9650/contract/bin
+http://localhost:9650/contract/abi?hash=0x6e84a6216eA6dACC71eE8E6b0a5B7322EEbC0fDd
+http://localhost:9650/contract/abi?hash=0x60aE616a2155Ee3d9A68541Ba4544862310933d4
+http://localhost:9650/contract/abi?hash=0x454E67025631C065d3cFAD6d71E6892f74487a15
+
+```
+
+### Running tests
+To run unit test and see test coverage you can run:
+
+```
+yarn test
+```
+
+#### Requirements.
 
 The main goal of this challenge is to create a backend application writen in nodejs/typescript that consumes, processes and store blockchain data.
 
